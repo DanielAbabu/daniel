@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound, useRouter } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
-import { getArticle, articles } from "@/lib/site-data";
+import { getArticle, articles, type Article as ArticleType } from "@/lib/site-data";
 
 export const Route = createFileRoute("/writing/$slug")({
   loader: ({ params }) => {
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/writing/$slug")({
 });
 
 function Article() {
-  const { article } = Route.useLoaderData();
+  const { article } = Route.useLoaderData() as { article: ArticleType };
   const idx = articles.findIndex((a) => a.slug === article.slug);
   const next = articles[(idx + 1) % articles.length];
 
