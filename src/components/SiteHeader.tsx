@@ -6,8 +6,6 @@ const nav = [
   { to: "/", label: "Index" },
   { to: "/work", label: "Work" },
   { to: "/about", label: "About" },
-  { to: "/experience", label: "Experience" },
-  { to: "/writing", label: "Writing" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -28,9 +26,7 @@ export function SiteHeader() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-rule bg-background/80 backdrop-blur-xl"
-          : "bg-transparent"
+        scrolled ? "border-b border-rule bg-background/80 backdrop-blur-xl" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 md:px-10">
@@ -45,8 +41,7 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           {nav.map((item, i) => {
-            const active =
-              item.to === "/" ? path === "/" : path.startsWith(item.to);
+            const active = item.to === "/" ? path === "/" : path.startsWith(item.to);
             return (
               <Link
                 key={item.to}
@@ -68,7 +63,7 @@ export function SiteHeader() {
             );
           })}
         </nav>
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           {site.available && (
             <span className="flex items-center gap-2 text-xs text-muted-foreground">
               <span className="relative flex h-2 w-2">
@@ -78,12 +73,16 @@ export function SiteHeader() {
               Available
             </span>
           )}
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="border border-rule px-4 py-1.5 font-mono-ui text-xs uppercase tracking-wider text-foreground hover:bg-foreground hover:text-background transition-colors"
+          >
+            Resume
+          </a>
         </div>
-        <button
-          aria-label="Menu"
-          className="md:hidden"
-          onClick={() => setOpen((o) => !o)}
-        >
+        <button aria-label="Menu" className="md:hidden" onClick={() => setOpen((o) => !o)}>
           <div className="flex h-6 w-7 flex-col justify-between">
             <span
               className={`h-px w-full bg-foreground transition-transform ${open ? "translate-y-[11px] rotate-45" : ""}`}
@@ -106,9 +105,7 @@ export function SiteHeader() {
                 to={item.to}
                 className="flex items-baseline gap-3 border-b border-rule py-4 text-2xl font-display"
               >
-                <span className="font-mono-ui text-xs text-muted-foreground">
-                  0{i + 1}
-                </span>
+                <span className="font-mono-ui text-xs text-muted-foreground">0{i + 1}</span>
                 {item.label}
               </Link>
             ))}

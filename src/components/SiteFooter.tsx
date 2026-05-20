@@ -42,11 +42,27 @@ export function SiteFooter() {
           <div className="md:col-span-3">
             <p className="section-num mb-4">— Index</p>
             <ul className="space-y-2 text-base">
-              <li><Link to="/work" className="editorial-link">Work</Link></li>
-              <li><Link to="/about" className="editorial-link">About</Link></li>
-              <li><Link to="/experience" className="editorial-link">Experience</Link></li>
-              <li><Link to="/writing" className="editorial-link">Writing</Link></li>
-              <li><Link to="/contact" className="editorial-link">Contact</Link></li>
+              <li>
+                <Link to="/work" className="editorial-link">
+                  Work
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="editorial-link">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to="/experience" className="editorial-link">
+                  Experience
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/contact" className="editorial-link">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -54,9 +70,7 @@ export function SiteFooter() {
           <p className="font-mono-ui">
             © {year} {site.name} · {site.location}
           </p>
-          <p className="font-mono-ui">
-            Set in Fraunces & Inter · Built with intent.
-          </p>
+          <p className="font-mono-ui">Set in Fraunces & Inter · Built with intent.</p>
         </div>
       </div>
     </footer>
