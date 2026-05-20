@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { Parallax } from "@/components/Parallax";
+import { Mermaid } from "@/components/Mermaid";
 import { getProject, projects, type Project } from "@/lib/projects";
 
 export const Route = createFileRoute("/work/$slug")({
@@ -31,7 +32,10 @@ export const Route = createFileRoute("/work/$slug")({
         <h1 className="mt-4 font-display text-5xl">Something broke.</h1>
         <p className="mt-3 text-muted-foreground">{error.message}</p>
         <button
-          onClick={() => { router.invalidate(); reset(); }}
+          onClick={() => {
+            router.invalidate();
+            reset();
+          }}
           className="mt-6 editorial-link"
         >
           Try again →
@@ -43,7 +47,9 @@ export const Route = createFileRoute("/work/$slug")({
     <div className="mx-auto max-w-2xl px-6 pt-40 text-center">
       <p className="section-num">— 404</p>
       <h1 className="mt-4 font-display text-5xl">Project not found.</h1>
-      <Link to="/work" className="mt-6 inline-block editorial-link">All work →</Link>
+      <Link to="/work" className="mt-6 inline-block editorial-link">
+        All work →
+      </Link>
     </div>
   ),
   component: CaseStudy,
@@ -57,7 +63,10 @@ function AnimatedNumber({ value }: { value: string }) {
   useEffect(() => {
     if (!inView) return;
     const match = value.match(/^(-?)(\d+(?:\.\d+)?)(.*)$/);
-    if (!match) { setDisplayed(value); return; }
+    if (!match) {
+      setDisplayed(value);
+      return;
+    }
     const sign = match[1];
     const target = parseFloat(match[2]);
     const suffix = match[3];
@@ -109,9 +118,7 @@ function CaseStudy() {
               <ul className="mt-6 divide-y divide-rule border-y border-rule">
                 {project.goals.map((g, i) => (
                   <li key={i} className="flex items-baseline gap-6 py-5">
-                    <span className="font-mono-ui text-xs text-muted-foreground">
-                      G/0{i + 1}
-                    </span>
+                    <span className="font-mono-ui text-xs text-muted-foreground">G/0{i + 1}</span>
                     <span className="font-display text-xl md:text-2xl">{g}</span>
                   </li>
                 ))}
@@ -136,21 +143,33 @@ function CaseStudy() {
             {project.approach.map((a, i) => (
               <Reveal key={i} delay={i * 0.08} className="md:col-span-4">
                 <div className="border-t border-foreground pt-6">
-                  <span className="font-mono-ui text-xs text-muted-foreground">
-                    A/0{i + 1}
-                  </span>
+                  <span className="font-mono-ui text-xs text-muted-foreground">A/0{i + 1}</span>
                   <h3 className="mt-3 font-display text-2xl tracking-tight md:text-3xl">
                     {a.title}
                   </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    {a.body}
-                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{a.body}</p>
                 </div>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Architecture */}
+      {project.diagram && (
+        <section className="mx-auto max-w-[1600px] px-6 py-32 md:px-10">
+          <Reveal>
+            <div className="mb-16 flex items-end justify-between border-b border-rule pb-6">
+              <p className="section-num">— Architecture</p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="rounded-2xl border border-rule bg-secondary/20 p-8 md:p-16">
+              <Mermaid chart={project.diagram} />
+            </div>
+          </Reveal>
+        </section>
+      )}
 
       {/* Highlights */}
       <section className="mx-auto max-w-[1600px] px-6 py-32 md:px-10">
@@ -165,9 +184,7 @@ function CaseStudy() {
             <Reveal key={i} delay={0.05}>
               <div className="grid gap-8 md:grid-cols-12 md:gap-12">
                 <div className="md:col-span-5">
-                  <span className="font-mono-ui text-xs text-muted-foreground">
-                    H/0{i + 1}
-                  </span>
+                  <span className="font-mono-ui text-xs text-muted-foreground">H/0{i + 1}</span>
                   <h3 className="mt-3 font-display text-3xl md:text-4xl">{h.title}</h3>
                   <p className="mt-4 text-base text-muted-foreground">{h.body}</p>
                 </div>
@@ -208,9 +225,7 @@ function CaseStudy() {
                     <span className="font-display text-5xl text-primary leading-none">
                       0{i + 1}
                     </span>
-                    <p className="font-display text-xl leading-relaxed md:text-2xl">
-                      {c}
-                    </p>
+                    <p className="font-display text-xl leading-relaxed md:text-2xl">{c}</p>
                   </div>
                 </Reveal>
               ))}
@@ -282,15 +297,21 @@ function Cover({ project }: { project: Project }) {
   return (
     <section className="relative isolate overflow-hidden">
       <div className={`absolute inset-0 -z-10 bg-gradient-to-br ${palette[project.cover]}`}>
-        <div className="absolute inset-0 opacity-[0.08]" style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg, currentColor 0 1px, transparent 1px 6px)",
-        }} />
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(0deg, currentColor 0 1px, transparent 1px 6px)",
+          }}
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
       </div>
 
       <div className="relative mx-auto max-w-[1600px] px-6 pb-24 pt-40 md:px-10 md:pb-40 md:pt-52">
-        <Link to="/work" className="font-mono-ui text-xs text-primary-foreground/70 mix-blend-difference editorial-link">
+        <Link
+          to="/work"
+          className="font-mono-ui text-xs text-primary-foreground/70 mix-blend-difference editorial-link"
+        >
           ← All work
         </Link>
         <motion.h1
@@ -326,11 +347,15 @@ function Cover({ project }: { project: Project }) {
             <dd className="mt-1 font-display text-xl">{project.role}</dd>
           </div>
           <div>
-            <dt className="font-mono-ui text-[10px] uppercase tracking-[0.2em] opacity-70">Timeline</dt>
+            <dt className="font-mono-ui text-[10px] uppercase tracking-[0.2em] opacity-70">
+              Timeline
+            </dt>
             <dd className="mt-1 font-display text-xl">{project.timeline}</dd>
           </div>
           <div>
-            <dt className="font-mono-ui text-[10px] uppercase tracking-[0.2em] opacity-70">Stack</dt>
+            <dt className="font-mono-ui text-[10px] uppercase tracking-[0.2em] opacity-70">
+              Stack
+            </dt>
             <dd className="mt-1 text-sm">{project.stack.slice(0, 3).join(" · ")}</dd>
           </div>
         </motion.dl>

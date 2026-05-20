@@ -29,18 +29,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Émile Vasari — Software Engineer" },
+      { title: "Daniel Ababu Portfolio" },
       {
         name: "description",
         content:
-          "Portfolio of Émile Vasari, software engineer. Realtime systems, ML infra, design tooling, and the quiet engineering decisions that age well.",
+          "Portfolio of Daniel Ababu Tegegen, software engineer. Distributed systems, backend architecture, and high-performance applications.",
       },
-      { name: "author", content: "Émile Vasari" },
-      { property: "og:title", content: "Émile Vasari — Software Engineer" },
+      { name: "author", content: "Daniel Ababu Tegegen" },
+      { property: "og:title", content: "Daniel Ababu Tegegen — Software Engineer" },
       {
         property: "og:description",
         content:
-          "Realtime systems, ML infra, design tooling. Selected work and writing.",
+          "Distributed systems, backend architecture, and high-performance applications. Selected work and writing.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

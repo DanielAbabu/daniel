@@ -1,44 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { Reveal } from "@/components/Reveal";
 import { site, skillGroups } from "@/lib/site-data";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Émile Vasari" },
+      { title: `About — ${site.name}` },
       {
         name: "description",
-        content: "About Émile Vasari: a software engineer working on realtime systems, ML infrastructure, and developer tools.",
+        content: `About ${site.name}: a software engineer specializing in backend systems and distributed architecture.`,
       },
-      { property: "og:title", content: "About — Émile Vasari" },
+      { property: "og:title", content: `About — ${site.name}` },
       { property: "og:description", content: site.shortBio },
     ],
   }),
   component: About,
 });
-
-function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
-  return (
-    <div ref={ref} className="border-t border-rule py-3">
-      <div className="flex items-baseline justify-between">
-        <span className="text-base">{name}</span>
-        <span className="font-mono-ui text-xs text-muted-foreground">{level}%</span>
-      </div>
-      <div className="mt-2 h-px w-full bg-rule">
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={inView ? { scaleX: level / 100 } : { scaleX: 0 }}
-          transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
-          className="h-px origin-left bg-primary"
-        />
-      </div>
-    </div>
-  );
-}
 
 function About() {
   return (
@@ -56,10 +33,23 @@ function About() {
         <Reveal className="md:col-span-3">
           <p className="section-num">— Bio</p>
         </Reveal>
-        <div className="md:col-span-8 md:col-start-4 space-y-6 text-lg leading-relaxed">
+        <Reveal className="md:col-span-4">
+          <div className="aspect-[3/4] w-full overflow-hidden bg-secondary/20">
+            <img
+              src="/profile.png"
+              alt={site.name}
+              className="h-full w-full object-cover grayscale transition-all duration-700 hover:scale-105 hover:grayscale-0"
+            />
+          </div>
+        </Reveal>
+        <div className="md:col-span-5 space-y-6 text-lg leading-relaxed">
           {site.longBio.map((p, i) => (
             <Reveal key={i} delay={i * 0.05}>
-              <p className={i === 0 ? "font-display text-2xl drop-cap md:text-3xl" : "text-muted-foreground"}>
+              <p
+                className={
+                  i === 0 ? "font-display text-2xl drop-cap md:text-3xl" : "text-muted-foreground"
+                }
+              >
                 {p}
               </p>
             </Reveal>
@@ -76,12 +66,17 @@ function About() {
           <div className="md:col-span-9 grid gap-x-12 gap-y-12 md:grid-cols-2">
             {skillGroups.map((g, gi) => (
               <Reveal key={g.group} delay={gi * 0.05}>
-                <h3 className="font-mono-ui text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                <h3 className="font-mono-ui text-xs uppercase tracking-[0.2em] text-muted-foreground border-b border-rule pb-3">
                   / {g.group}
                 </h3>
-                <div className="mt-4">
-                  {g.items.map((s, i) => (
-                    <SkillBar key={s.name} {...s} delay={i * 0.06} />
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {g.items.map((s) => (
+                    <span
+                      key={s.name}
+                      className="border border-rule px-4 py-2 font-mono-ui text-sm text-foreground hover:border-foreground transition-colors"
+                    >
+                      {s.name}
+                    </span>
                   ))}
                 </div>
               </Reveal>
@@ -96,9 +91,9 @@ function About() {
         </Reveal>
         <div className="md:col-span-8 md:col-start-4 grid gap-8 md:grid-cols-3">
           {[
-            { label: "Reading", value: "Designing Data-Intensive Applications, again." },
-            { label: "Learning", value: "Verifiable computation in zk circuits." },
-            { label: "Listening", value: "Caroline Polachek & Bill Frisell on shuffle." },
+            { label: "Solving", value: "Advanced graph problems on Codeforces." },
+            { label: "Learning", value: "Distributed consensus and Raft in Go." },
+            { label: "Building", value: "High-performance messaging APIs." },
           ].map((c, i) => (
             <Reveal key={c.label} delay={i * 0.08}>
               <div className="border-t-2 border-primary pt-4">

@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
       { title: `${site.name} — Software Engineer & Systems Builder` },
       {
         name: "description",
-        content: `${site.name} builds realtime systems, ML infra, and developer tools. Selected work, writing, and ways to get in touch.`,
+        content: `${site.name} builds distributed systems, backend architecture, and high-performance applications. Selected work, writing, and ways to get in touch.`,
       },
       { property: "og:title", content: `${site.name} — Software Engineer` },
       {
@@ -45,16 +45,11 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
       </div>
 
-      <motion.div
-        style={{ y, opacity }}
-        className="mx-auto w-full max-w-[1600px] px-6 md:px-10"
-      >
+      <motion.div style={{ y, opacity }} className="mx-auto w-full max-w-[1600px] px-6 md:px-10">
         <div className="mb-12 flex items-center gap-6">
           <span className="section-num">— Portfolio · MMXXVI</span>
           <span className="h-px flex-1 bg-rule" />
-          <span className="font-mono-ui text-xs text-muted-foreground">
-            {site.location}
-          </span>
+          <span className="font-mono-ui text-xs text-muted-foreground">{site.location}</span>
         </div>
 
         <h1 className="font-display text-[clamp(3.5rem,12vw,12rem)] font-light leading-[0.85] tracking-[-0.04em]">
@@ -64,7 +59,7 @@ function Hero() {
             transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             className="block"
           >
-            Émile
+            Daniel
           </motion.span>
           <motion.span
             initial={{ opacity: 0, y: 80 }}
@@ -72,7 +67,7 @@ function Hero() {
             transition={{ duration: 1.1, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             className="block italic text-primary"
           >
-            Vasari<span className="text-foreground not-italic">.</span>
+            Ababu<span className="text-foreground not-italic">.</span>
           </motion.span>
         </h1>
 
@@ -81,25 +76,33 @@ function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="md:col-span-5 md:col-start-1 max-w-xl text-base leading-relaxed text-muted-foreground"
+            className="md:col-span-6 md:col-start-1 max-w-xl text-lg leading-relaxed text-muted-foreground"
           >
-            Software engineer working at the intersection of distributed systems
-            and product. I design infrastructure that disappears under your
-            fingers — realtime, low-latency, legible.
+            Backend Engineer specializing in distributed systems and high-concurrency architecture.
+            I design robust infrastructure that powers scalable, efficient applications—and train
+            the next generation of engineers.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.7 }}
-            className="md:col-span-3 md:col-start-9 md:text-right"
+            className="md:col-span-4 md:col-start-9 md:text-right flex flex-col items-end"
           >
-            <Link to="/work" className="editorial-link inline-flex items-center gap-2 text-lg">
+            <Link
+              to="/work"
+              className="editorial-link inline-flex items-center gap-2 text-xl font-display"
+            >
               Selected Work
               <span aria-hidden>↘</span>
             </Link>
-            <p className="mt-3 font-mono-ui text-xs text-muted-foreground">
-              03 case studies · 4 years of writing
-            </p>
+            <div className="mt-5 flex flex-col gap-1.5 items-end text-right">
+              <p className="font-mono-ui text-[10px] uppercase tracking-widest text-muted-foreground bg-secondary/50 px-2 py-1 rounded-sm">
+                1200+ Algorithms Solved
+              </p>
+              <p className="font-mono-ui text-[10px] uppercase tracking-widest text-muted-foreground bg-secondary/50 px-2 py-1 rounded-sm">
+                150+ Engineers Mentored
+              </p>
+            </div>
           </motion.div>
         </div>
       </motion.div>
@@ -154,16 +157,14 @@ function FeaturedWork() {
                   <ProjectCover project={p} />
                 </Parallax>
               </div>
-              <div className={`md:col-span-4 ${i % 2 === 1 ? "md:order-1 md:col-start-1" : "md:col-start-9"} flex flex-col justify-end`}>
+              <div
+                className={`md:col-span-4 ${i % 2 === 1 ? "md:order-1 md:col-start-1" : "md:col-start-9"} flex flex-col justify-end`}
+              >
                 <p className="font-mono-ui text-xs text-muted-foreground">
                   / 0{i + 1} · {p.year}
                 </p>
-                <h3 className="mt-4 font-display text-5xl tracking-tight md:text-6xl">
-                  {p.title}
-                </h3>
-                <p className="mt-4 text-base text-muted-foreground">
-                  {p.summary}
-                </p>
+                <h3 className="mt-4 font-display text-5xl tracking-tight md:text-6xl">{p.title}</h3>
+                <p className="mt-4 text-base text-muted-foreground">{p.summary}</p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {p.tags.map((t) => (
                     <span
@@ -194,15 +195,22 @@ function ProjectCover({ project }: { project: { cover: string; title: string } }
     warm: "from-primary/60 via-secondary to-background",
   };
   return (
-    <div className={`relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br ${palette[project.cover] ?? palette.crimson}`}>
-      <div className="absolute inset-0 mix-blend-overlay opacity-40" style={{
-        backgroundImage:
-          "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4), transparent 50%), radial-gradient(circle at 70% 80%, rgba(0,0,0,0.4), transparent 50%)",
-      }} />
-      <div className="absolute inset-0 opacity-[0.06]" style={{
-        backgroundImage:
-          "repeating-linear-gradient(0deg, #000 0 1px, transparent 1px 4px)",
-      }} />
+    <div
+      className={`relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br ${palette[project.cover] ?? palette.crimson}`}
+    >
+      <div
+        className="absolute inset-0 mix-blend-overlay opacity-40"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4), transparent 50%), radial-gradient(circle at 70% 80%, rgba(0,0,0,0.4), transparent 50%)",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage: "repeating-linear-gradient(0deg, #000 0 1px, transparent 1px 4px)",
+        }}
+      />
       <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-primary-foreground mix-blend-difference">
         <span className="font-display text-3xl tracking-tight">{project.title}</span>
         <span className="font-mono-ui text-xs">↗</span>
@@ -221,16 +229,16 @@ function AboutSnapshot() {
         <div className="md:col-span-8 md:col-start-4">
           <Reveal>
             <p className="font-display text-3xl leading-[1.15] tracking-tight md:text-5xl">
-              I've spent a decade building systems that <em className="text-primary">have to work</em> —
-              realtime collaboration for tens of thousands of editors, ML inference at six billion
-              predictions a day, design tools that compile in under a second.
+              I build systems that <em className="text-primary">scale and perform</em> — from
+              advertising platforms and financial trackers to AI-powered study companions and
+              high-concurrency messaging APIs.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-8 max-w-xl text-base text-muted-foreground">
-              I care about the unglamorous parts: API edges, error paths, the
-              twentieth-percentile user experience. The work I'm proudest of is
-              the work nobody noticed because nothing broke.
+              I care about the unglamorous parts: API edges, error paths, the twentieth-percentile
+              user experience. The work I'm proudest of is the work nobody noticed because nothing
+              broke.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
@@ -256,10 +264,7 @@ function ClosingCTA() {
           <br />
           with intent.
         </h2>
-        <Link
-          to="/contact"
-          className="mt-12 inline-flex items-center gap-3 editorial-link text-xl"
-        >
+        <Link to="/contact" className="mt-12 inline-flex items-center gap-3 editorial-link text-xl">
           Start a conversation
           <span aria-hidden>↗</span>
         </Link>
