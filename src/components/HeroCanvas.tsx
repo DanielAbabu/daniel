@@ -59,7 +59,7 @@ export function HeroCanvas() {
         vec2 p = uv * 2.0 - 1.0;
         p.x *= u_res.x / u_res.y;
 
-        float t = u_time * 0.08;
+        float t = u_time * 0.3;
         float n1 = snoise(p * 1.2 + vec2(t, -t*0.7));
         float n2 = snoise(p * 2.4 - vec2(t*0.5, t));
         float n = 0.6 * n1 + 0.4 * n2;

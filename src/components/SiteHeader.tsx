@@ -3,10 +3,6 @@ import { useEffect, useState } from "react";
 import { site } from "@/lib/site-data";
 
 const nav = [
-  { to: "/", label: "Index" },
-  { to: "/work", label: "Work" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {
@@ -25,9 +21,8 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "border-b border-rule bg-background/80 backdrop-blur-xl" : "bg-transparent"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? "border-b border-rule bg-background/80 backdrop-blur-xl" : "bg-transparent"
+        }`}
     >
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 md:px-10">
         <Link to="/" className="group flex items-center gap-3">
@@ -46,18 +41,16 @@ export function SiteHeader() {
               <Link
                 key={item.to}
                 to={item.to}
-                className={`group relative px-3 py-2 text-sm transition-colors ${
-                  active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
+                className={`group relative px-3 py-2 text-sm transition-colors ${active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`}
               >
                 <span className="font-mono-ui mr-1.5 text-[10px] text-muted-foreground/70">
                   0{i + 1}
                 </span>
                 {item.label}
                 <span
-                  className={`absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-foreground transition-transform duration-500 group-hover:scale-x-100 ${
-                    active ? "scale-x-100 bg-primary" : ""
-                  }`}
+                  className={`absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-foreground transition-transform duration-500 group-hover:scale-x-100 ${active ? "scale-x-100 bg-primary" : ""
+                    }`}
                 />
               </Link>
             );

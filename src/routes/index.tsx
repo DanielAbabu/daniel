@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Mail, Github, Send, Linkedin } from "lucide-react";
 import { HeroCanvas } from "@/components/HeroCanvas";
 import { Marquee } from "@/components/Marquee";
 import { Reveal } from "@/components/Reveal";
 import { Parallax } from "@/components/Parallax";
 import { projects } from "@/lib/projects";
-import { site } from "@/lib/site-data";
+import { site, experience, type ExperienceItem, skillGroups } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,14 +39,14 @@ function Hero() {
   return (
     <section
       ref={ref}
-      className="relative isolate flex min-h-screen flex-col justify-end overflow-hidden pb-16 pt-32"
+      className="relative isolate flex-col justify-end overflow-hidden pb-32 pt-32"
     >
       <div className="absolute inset-0 -z-10">
         <HeroCanvas />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
       </div>
 
-      <motion.div style={{ y, opacity }} className="mx-auto w-full max-w-[1600px] px-6 md:px-10">
+      <motion.div style={{ opacity }} className="mx-auto w-full max-w-[1600px] px-6 md:px-10">
         <div className="mb-12 flex items-center gap-6">
           <span className="section-num">— Portfolio · MMXXVI</span>
           <span className="h-px flex-1 bg-rule" />
@@ -71,7 +72,7 @@ function Hero() {
           </motion.span>
         </h1>
 
-        <div className="mt-12 grid gap-12 md:grid-cols-12">
+        <div className="mt-12 mb-16 grid gap-12 md:grid-cols-12">
           <motion.p
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -88,13 +89,6 @@ function Hero() {
             transition={{ duration: 1, delay: 0.7 }}
             className="md:col-span-4 md:col-start-9 md:text-right flex flex-col items-end"
           >
-            <Link
-              to="/work"
-              className="editorial-link inline-flex items-center gap-2 text-xl font-display"
-            >
-              Selected Work
-              <span aria-hidden>↘</span>
-            </Link>
             <div className="mt-5 flex flex-col gap-1.5 items-end text-right">
               <p className="font-mono-ui text-[10px] uppercase tracking-widest text-muted-foreground bg-secondary/50 px-2 py-1 rounded-sm">
                 1200+ Algorithms Solved
@@ -127,29 +121,24 @@ function Hero() {
 function FeaturedWork() {
   const featured = projects.slice(0, 3);
   return (
-    <section className="mx-auto max-w-[1600px] px-6 py-32 md:px-10">
+    <section className="mx-auto max-w-[1600px] px-6 py-16 md:px-10">
       <Reveal>
         <div className="mb-20 flex items-end justify-between gap-6 border-b border-rule pb-6">
           <div>
-            <p className="section-num mb-4">— 01 / Selected Work</p>
+            <p className="section-num mb-4">— 02 / Selected Work</p>
             <h2 className="font-display text-5xl tracking-tight md:text-7xl">
               Things I've
               <br />
               <span className="italic">built carefully.</span>
             </h2>
           </div>
-          <Link to="/work" className="editorial-link hidden text-base md:inline-block">
-            All projects (03) →
-          </Link>
         </div>
       </Reveal>
 
       <div className="space-y-32">
         {featured.map((p, i) => (
           <Reveal key={p.slug} delay={i * 0.05}>
-            <Link
-              to="/work/$slug"
-              params={{ slug: p.slug }}
+            <div
               className="group grid gap-8 md:grid-cols-12 md:gap-12"
             >
               <div className={`md:col-span-7 ${i % 2 === 1 ? "md:order-2 md:col-start-6" : ""}`}>
@@ -175,12 +164,8 @@ function FeaturedWork() {
                     </span>
                   ))}
                 </div>
-                <span className="mt-8 inline-flex items-center gap-2 editorial-link self-start">
-                  Read case study
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </span>
               </div>
-            </Link>
+            </div>
           </Reveal>
         ))}
       </div>
@@ -224,7 +209,7 @@ function AboutSnapshot() {
     <section className="border-y border-rule bg-secondary/40">
       <div className="mx-auto grid max-w-[1600px] gap-12 px-6 py-32 md:grid-cols-12 md:px-10">
         <Reveal className="md:col-span-3">
-          <p className="section-num">— 02 / About</p>
+          <p className="section-num">— 03 / About</p>
         </Reveal>
         <div className="md:col-span-8 md:col-start-4">
           <Reveal>
@@ -256,7 +241,7 @@ function ClosingCTA() {
   return (
     <section className="mx-auto max-w-[1600px] px-6 py-40 md:px-10">
       <Reveal>
-        <p className="section-num mb-8">— 03 / Next</p>
+        <p className="section-num mb-8">— 06 / Next</p>
         <h2 className="font-display text-[clamp(3rem,10vw,10rem)] font-light leading-[0.85] tracking-[-0.04em]">
           Let's build
           <br />
@@ -264,11 +249,184 @@ function ClosingCTA() {
           <br />
           with intent.
         </h2>
-        <Link to="/contact" className="mt-12 inline-flex items-center gap-3 editorial-link text-xl">
-          Start a conversation
-          <span aria-hidden>↗</span>
-        </Link>
+        <div className="mt-12 flex flex-col items-start gap-8 md:flex-row md:items-center md:gap-12">
+          <a href="mailto:daniel.ab.tegegen@gmail.com" className="inline-flex items-center gap-3 editorial-link text-xl">
+            Start a conversation
+            <span aria-hidden>↗</span>
+          </a>
+          <div className="flex items-center gap-6 text-muted-foreground">
+            <a href="mailto:daniel.ab.tegegen@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors" aria-label="Email">
+              <Mail className="h-6 w-6" />
+            </a>
+            <a href="https://github.com/DanielAbabu" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors" aria-label="GitHub">
+              <Github className="h-6 w-6" />
+            </a>
+            <a href="https://t.me/daniel_ababu" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors" aria-label="Telegram">
+              <Send className="h-6 w-6" />
+            </a>
+            <a href="https://linkedin.com/in/DanielAbabu" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors" aria-label="LinkedIn">
+              <Linkedin className="h-6 w-6" />
+            </a>
+          </div>
+        </div>
       </Reveal>
+    </section>
+  );
+}
+
+type Filter = "all" | "work" | "education";
+
+function ExperienceSection() {
+  const [filter, setFilter] = useState<Filter>("all");
+  const items = experience.filter((e) => filter === "all" || e.type === filter);
+
+  return (
+    <section className="mx-auto max-w-[1600px] px-6 py-32 md:px-10 overflow-hidden">
+      <Reveal>
+        <p className="section-num mb-6">— 01 / Experience</p>
+        <h2 className="font-display text-[clamp(2.5rem,8vw,7rem)] font-light leading-[0.85] tracking-[-0.04em]">
+          A working
+          <br />
+          <span className="italic text-primary">timeline.</span>
+        </h2>
+      </Reveal>
+
+      <Reveal delay={0.1}>
+        <div className="mt-12 flex gap-2 border-b border-rule pb-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
+          {(["all", "work", "education"] as Filter[]).map((f) => (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              className={`border px-4 py-2 font-mono-ui text-xs uppercase tracking-wider transition-colors shrink-0 ${filter === f
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-rule hover:border-foreground"
+                }`}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+      </Reveal>
+
+      <div className="relative mt-20">
+        <div className="absolute left-4 top-0 h-full w-px bg-rule md:left-1/2" />
+        <ul className="space-y-16">
+          {items.map((item, i) => (
+            <TimelineEntry key={`${item.org}-${item.dates}`} item={item} index={i} />
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function TimelineEntry({ item, index }: { item: ExperienceItem; index: number }) {
+  const left = index % 2 === 0;
+  return (
+    <Reveal as="li" delay={index * 0.04}>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-12">
+        <div
+          className={`relative pl-12 ${left ? "md:pl-0 md:pr-12 md:text-right" : "md:order-2"}`}
+        >
+          <span
+            className={`absolute top-2 h-3 w-3 rounded-full border-2 border-background bg-primary left-[10px] ${left ? "md:left-auto md:-right-2" : "md:-left-2"
+              }`}
+          />
+          <p className="font-mono-ui text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            {item.dates} · {item.type === "education" ? "Education" : "Work"}
+          </p>
+          <h3 className="mt-2 font-display text-2xl md:text-3xl lg:text-4xl tracking-tight">
+            {item.title}
+          </h3>
+          <p className="mt-1 text-base">
+            <span className="text-primary">{item.org}</span>
+            {item.location ? (
+              <span className="text-muted-foreground flex-col md:flex-row"> · {item.location}</span>
+            ) : null}
+          </p>
+          <ul
+            className={`mt-4 space-y-2 text-sm text-muted-foreground ${left ? "md:ml-auto" : ""}`}
+          >
+            {item.bullets.map((b, i) => (
+              <li key={i} className="leading-relaxed flex gap-3">
+                <span className="shrink-0">—</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+          {item.tech && (
+            <div className={`mt-4 flex flex-wrap gap-1.5 ${left ? "md:justify-end" : ""}`}>
+              {item.tech.map((t) => (
+                <span
+                  key={t}
+                  className="border border-rule px-2 py-0.5 font-mono-ui text-[10px] uppercase tracking-wider"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className={`hidden md:block ${left ? "" : "md:order-1"}`} aria-hidden />
+      </div>
+    </Reveal>
+  );
+}
+
+function SkillsSection() {
+  return (
+    <section className="border-b border-rule py-32">
+      <div className="mx-auto max-w-[1600px] px-6 md:px-10 grid gap-12 md:grid-cols-12">
+        <Reveal className="md:col-span-3">
+          <p className="section-num">— 04 / Skills</p>
+          <h2 className="mt-4 font-display text-4xl">What I reach for.</h2>
+        </Reveal>
+        <div className="md:col-span-9 grid gap-x-12 gap-y-12 md:grid-cols-2">
+          {skillGroups.map((g, gi) => (
+            <Reveal key={g.group} delay={gi * 0.05}>
+              <h3 className="font-mono-ui text-xs uppercase tracking-[0.2em] text-muted-foreground border-b border-rule pb-3">
+                / {g.group}
+              </h3>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {g.items.map((s) => (
+                  <span
+                    key={s.name}
+                    className="border border-rule px-4 py-2 font-mono-ui text-sm text-foreground hover:border-foreground transition-colors"
+                  >
+                    {s.name}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CurrentlySection() {
+  return (
+    <section className="mx-auto max-w-[1600px] px-6 py-32 md:px-10 grid gap-12 md:grid-cols-12">
+      <Reveal className="md:col-span-3">
+        <p className="section-num">— 05 / Currently</p>
+      </Reveal>
+      <div className="md:col-span-8 md:col-start-4 grid gap-8 md:grid-cols-3">
+        {[
+          { label: "Solving", value: "Advanced graph problems on Codeforces." },
+          { label: "Learning", value: "Distributed consensus and Raft in Go." },
+          { label: "Building", value: "High-performance messaging APIs." },
+        ].map((c, i) => (
+          <Reveal key={c.label} delay={i * 0.08}>
+            <div className="border-t-2 border-primary pt-4">
+              <p className="font-mono-ui text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {c.label}
+              </p>
+              <p className="mt-3 font-display text-xl">{c.value}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }
@@ -278,9 +436,13 @@ function Home() {
     <>
       <Hero />
       <Marquee />
+      <ExperienceSection />
       <FeaturedWork />
       <AboutSnapshot />
+      <SkillsSection />
+      <CurrentlySection />
       <ClosingCTA />
     </>
   );
 }
+
