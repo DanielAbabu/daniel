@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { Mail, Github, Send, Linkedin } from "lucide-react";
@@ -10,20 +10,6 @@ import { projects } from "@/lib/projects";
 import { site, experience, type ExperienceItem, skillGroups } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: `${site.name} — Software Engineer & Systems Builder` },
-      {
-        name: "description",
-        content: `${site.name} builds distributed systems, backend architecture, and high-performance applications. Selected work, writing, and ways to get in touch.`,
-      },
-      { property: "og:title", content: `${site.name} — Software Engineer` },
-      {
-        property: "og:description",
-        content: site.shortBio,
-      },
-    ],
-  }),
   component: Home,
 });
 
@@ -227,9 +213,9 @@ function AboutSnapshot() {
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <Link to="/about" className="mt-8 inline-block editorial-link text-base">
-              More about me →
-            </Link>
+            <a href="mailto:daniel.ab.tegegen@gmail.com" className="mt-8 inline-block editorial-link text-base">
+              Get in touch →
+            </a>
           </Reveal>
         </div>
       </div>
