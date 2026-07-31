@@ -1,17 +1,17 @@
 export const site = {
   name: "Daniel Ababu Tegegen",
-  role: "Software Engineer",
+  role: "Backend Engineer",
   shortBio:
-    "I build scalable backend systems and high-performance applications — from distributed systems to AI-powered platforms.",
+    "I build scalable backend systems and high-performance applications for remote teams — with a focus on distributed systems, automation, and Europe-friendly collaboration.",
   longBio: [
-    "I'm a software engineer and competitive programmer with a passion for building robust, scalable systems. With a strong foundation in data structures and algorithms, I've solved over 1200+ problems on LeetCode and Codeforces.",
-    "I've worked on everything from pharmacy management systems and financial trackers to AI-powered study companions and ingredient purchasing platforms. My expertise lies in Go, Python, and distributed systems architecture.",
-    "As a former trainer at A2SV (African to Silicon Valley), I've mentored over 150 students in backend development and competitive programming, helping them bridge the gap between theory and production-quality engineering.",
+    "I'm a backend engineer and competitive programmer with a passion for building robust, scalable systems. With a strong foundation in data structures and algorithms, I've solved over 1200+ problems on LeetCode and Codeforces.",
+    "I've worked on everything from pharmacy management systems and financial trackers to AI-powered study companions and platform automation tools. My expertise lies in Go, Python, and distributed systems architecture.",
+    "As a former trainer at A2SV (African to Silicon Valley), I've mentored over 150 students in backend development and competitive programming, helping them bridge the gap between theory and production-quality engineering. I'm open to remote opportunities, especially with teams in Europe.",
   ],
   email: "danielababu0966@gmail.com",
   social: [
-    { label: "GitHub", href: "https://github.com" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
+    { label: "GitHub", href: "https://github.com/DanielAbabu" },
+    { label: "LinkedIn", href: "https://linkedin.com/in/DanielAbabu" },
     { label: "Email", href: "mailto:danielababu0966@gmail.com" },
   ],
   location: "Addis Ababa, Ethiopia",

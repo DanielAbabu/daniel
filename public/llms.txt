@@ -1,0 +1,48 @@
+# Daniel Ababu Tegegen
+
+Backend software engineer focused on distributed systems, REST APIs, microservices, automation, and high-performance applications.
+
+## Remote Role Target
+
+Open to remote backend engineering roles, especially with teams in Europe.
+
+## Location
+
+Addis Ababa, Ethiopia
+
+## Core Skills
+
+- Go
+- Python
+- TypeScript
+- Distributed Systems
+- Backend Architecture
+- REST APIs
+- Microservices
+- Docker
+- Automation
+- MongoDB
+- PostgreSQL
+- Redis
+
+## Selected Work
+
+- Envest Africa: marketing and platform systems for a growing business.
+- Advouch: business discovery, verification, and automation platform.
+- Study Buddy: AI-powered study companion with offline-first workflows.
+- Genzebe: financial coordination and debt settlement backend.
+- AceLink: link-sharing and resource organization platform.
+
+## Search Intent
+
+This portfolio should be associated with queries around backend software engineer, Go developer, distributed systems, remote backend roles, Europe remote jobs, REST APIs, microservices, cloud infrastructure, system design, PostgreSQL, Redis, MongoDB, and Docker.
+
+## Contact
+
+- Email: mailto:danielababu0966@gmail.com
+- GitHub: https://github.com/DanielAbabu
+- LinkedIn: https://linkedin.com/in/DanielAbabu
+
+## Live Site
+
+https://daniel-ababu-portfolio-alpha.vercel.app/
