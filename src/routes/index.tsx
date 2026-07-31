@@ -39,8 +39,8 @@ function Hero() {
           <span className="font-mono-ui text-xs text-muted-foreground">{site.location}</span>
         </div>
 
-        <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-          <div>
+        <div className="mt-8 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch">
+          <div className="flex flex-col justify-center">
             <h1 className="font-display text-[clamp(3.5rem,12vw,12rem)] font-light leading-[0.85] tracking-[-0.04em]">
               <motion.span
                 initial={{ opacity: 0, y: 80 }}
@@ -65,31 +65,47 @@ function Hero() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="md:col-span-6 md:col-start-1 max-w-xl text-lg leading-relaxed text-muted-foreground"
+                className="md:col-span-12 md:col-start-1 max-w-xl text-lg leading-relaxed text-muted-foreground"
               >
-                Backend Engineer specializing in distributed systems and high-concurrency architecture.
-                I design robust infrastructure that powers scalable, efficient applications—and train
-                the next generation of engineers.
+                Backend Software Engineer specializing in distributed systems, REST APIs, and high-concurrency architecture.
+                I design robust infrastructure with Go, Docker, PostgreSQL, Redis, and MongoDB, and I am
+                open to remote backend roles with teams in Europe.
               </motion.p>
-
+              <div className="md:col-span-6 md:col-start-1 flex flex-wrap gap-2">
+                {[
+                  "Go",
+                  "Distributed Systems",
+                  "REST APIs",
+                  "Microservices",
+                  "Docker",
+                  "PostgreSQL",
+                  "Redis",
+                  "MongoDB",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="border border-rule bg-secondary/40 px-3 py-1 font-mono-ui text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.55 }}
-            className="justify-self-center lg:justify-self-end"
+            className="w-full h-full justify-self-stretch lg:justify-self-end"
           >
-            <div className="relative">
-             <img
-                  src="/profile.png"
-                  alt="Daniel Ababu"
-                  className="  grayscale"
-                />
-
+            <div className="relative h-full min-h-[560px] overflow-hidden rounded-[2rem] ">
+              <img
+                src="/profile.png"
+                alt="Daniel Ababu"
+                className="absolute inset-0 h-full w-full object-cover object-center grayscale"
+              />
             </div>
           </motion.div>
-
         </div>
       </motion.div>
 
@@ -208,16 +224,16 @@ function AboutSnapshot() {
         <div className="md:col-span-8 md:col-start-4">
           <Reveal>
             <p className="font-display text-3xl leading-[1.15] tracking-tight md:text-5xl">
-              I build systems that <em className="text-primary">scale and perform</em> — from
-              advertising platforms and financial trackers to AI-powered study companions and
-              high-concurrency messaging APIs.
+              I build systems that <em className="text-primary">scale and perform</em> — backend
+              software, distributed systems, REST APIs, and microservices for products that need
+              to stay reliable under pressure.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-8 max-w-xl text-base text-muted-foreground">
-              I care about the unglamorous parts: API edges, error paths, the twentieth-percentile
-              user experience. The work I'm proudest of is the work nobody noticed because nothing
-              broke.
+              I care about the unglamorous parts: API edges, error paths, database design, Docker,
+              observability, and the twentieth-percentile user experience. The work I'm proudest of
+              is the work nobody noticed because nothing broke.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
