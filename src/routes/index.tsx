@@ -39,51 +39,57 @@ function Hero() {
           <span className="font-mono-ui text-xs text-muted-foreground">{site.location}</span>
         </div>
 
-        <h1 className="font-display text-[clamp(3.5rem,12vw,12rem)] font-light leading-[0.85] tracking-[-0.04em]">
-          <motion.span
-            initial={{ opacity: 0, y: 80 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            className="block"
-          >
-            Daniel
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 80 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-            className="block italic text-primary"
-          >
-            Ababu<span className="text-foreground not-italic">.</span>
-          </motion.span>
-        </h1>
+        <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div>
+            <h1 className="font-display text-[clamp(3.5rem,12vw,12rem)] font-light leading-[0.85] tracking-[-0.04em]">
+              <motion.span
+                initial={{ opacity: 0, y: 80 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                className="block"
+              >
+                Daniel
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 80 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.1, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+                className="block italic text-primary"
+              >
+                Ababu<span className="text-foreground not-italic">.</span>
+              </motion.span>
+            </h1>
 
-        <div className="mt-12 mb-16 grid gap-12 md:grid-cols-12">
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="md:col-span-6 md:col-start-1 max-w-xl text-lg leading-relaxed text-muted-foreground"
-          >
-            Backend Engineer specializing in distributed systems and high-concurrency architecture.
-            I design robust infrastructure that powers scalable, efficient applications—and train
-            the next generation of engineers.
-          </motion.p>
+            <div className="mt-12 mb-16 grid gap-12 md:grid-cols-12">
+              <motion.p
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="md:col-span-6 md:col-start-1 max-w-xl text-lg leading-relaxed text-muted-foreground"
+              >
+                Backend Engineer specializing in distributed systems and high-concurrency architecture.
+                I design robust infrastructure that powers scalable, efficient applications—and train
+                the next generation of engineers.
+              </motion.p>
+
+            </div>
+          </div>
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.7 }}
-            className="md:col-span-4 md:col-start-9 md:text-right flex flex-col items-end"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.55 }}
+            className="justify-self-center lg:justify-self-end"
           >
-            <div className="mt-5 flex flex-col gap-1.5 items-end text-right">
-              <p className="font-mono-ui text-[10px] uppercase tracking-widest text-muted-foreground bg-secondary/50 px-2 py-1 rounded-sm">
-                1200+ Algorithms Solved
-              </p>
-              <p className="font-mono-ui text-[10px] uppercase tracking-widest text-muted-foreground bg-secondary/50 px-2 py-1 rounded-sm">
-                150+ Engineers Mentored
-              </p>
+            <div className="relative">
+             <img
+                  src="/profile.png"
+                  alt="Daniel Ababu"
+                  className="  grayscale"
+                />
+
             </div>
           </motion.div>
+
         </div>
       </motion.div>
 
@@ -105,7 +111,7 @@ function Hero() {
 }
 
 function FeaturedWork() {
-  const featured = projects.slice(0, 3);
+  const featured = projects;
   return (
     <section className="mx-auto max-w-[1600px] px-6 py-16 md:px-10">
       <Reveal>
@@ -162,8 +168,10 @@ function FeaturedWork() {
 function ProjectCover({ project }: { project: { cover: string; title: string } }) {
   const palette: Record<string, string> = {
     crimson: "from-primary via-primary/80 to-foreground",
-    ink: "from-foreground via-foreground/90 to-primary/40",
-    warm: "from-primary/60 via-secondary to-background",
+    aurora: "from-primary/90 via-red-500 to-rose-700",
+    midnight: "from-red-950 via-primary/80 to-red-700",
+    ember: "from-orange-600 via-red-500 to-primary/90",
+    sage: "from-rose-700 via-primary/70 to-red-900",
   };
   return (
     <div

@@ -67,7 +67,7 @@ export function SiteHeader() {
             </span>
           )}
           <a
-            href="/resume.pdf"
+            href="/Daniel_Ababu_Tegegen_Resume.pdf"
             target="_blank"
             rel="noreferrer"
             className="border border-rule px-4 py-1.5 font-mono-ui text-xs uppercase tracking-wider text-foreground hover:bg-foreground hover:text-background transition-colors"
