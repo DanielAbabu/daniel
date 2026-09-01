@@ -104,7 +104,7 @@ function Hero() {
             transition={{ duration: 1, delay: 0.45 }}
             className="w-full h-full justify-self-stretch lg:justify-self-end"
           >
-            <div className="relative h-[320px] sm:h-[420px] lg:h-full lg:min-h-[520px] overflow-hidden rounded-[1.5rem] md:rounded-[2rem] border border-rule/50 shadow-xl">
+            <div className="relative h-[320px] sm:h-[420px] lg:h-full lg:min-h-[520px] overflow-hidden rounded-[1.5rem] md:rounded-[2rem]">
               <img
                 src="/profile.png"
                 alt="Daniel Ababu"
@@ -312,8 +312,8 @@ function ExperienceSection() {
               key={f}
               onClick={() => setFilter(f)}
               className={`border px-4 py-2 font-mono-ui text-xs uppercase tracking-wider transition-colors shrink-0 ${filter === f
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-rule hover:border-foreground"
+                ? "border-foreground bg-foreground text-background"
+                : "border-rule hover:border-foreground"
                 }`}
             >
               {f}
